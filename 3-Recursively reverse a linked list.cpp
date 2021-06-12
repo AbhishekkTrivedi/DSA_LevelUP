@@ -22,6 +22,7 @@ void insert_at_head(node *&head, int data){
         head = n;
 };
 
+-------------------------------------------------*-------------*--------------*-------------*------------*-----------------------------------------------------------------------
 node* Recursive_Reverse(node * head){
        if (head==NULL or head -> next == NULL){ 
            return head;
@@ -32,8 +33,9 @@ node* Recursive_Reverse(node * head){
               return new_head;       
 }
 
+----------------------------------------------------------------------------****************************-------------------------------------------------------------------------
 
-void printLL(node *head){
+    void printLL(node *head){
     while (head != NULL){
         cout << head -> data << "-->";
         head = head -> next; 
@@ -55,3 +57,9 @@ int main(){
     printLL(head);
     return 0;
 }
+
+
+//output:-
+
+19-->9-->5-->8-->4-->
+4-->8-->5-->9-->19-->
