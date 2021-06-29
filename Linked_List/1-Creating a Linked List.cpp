@@ -33,10 +33,7 @@ void printLL(node *head){
 
 int main(){
     node *head = NULL;
-    
-    
-//Output
-19-->9-->5-->8-->4-->    
+     
     insert_at_head(head,4);
     insert_at_head(head,8);
     insert_at_head(head,5);
@@ -46,3 +43,7 @@ int main(){
     
     return 0;
 }
+
+
+//Output
+19-->9-->5-->8-->4-->
