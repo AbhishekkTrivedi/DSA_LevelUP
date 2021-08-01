@@ -1,0 +1,49 @@
+#Write a function that takes input an array of distinct integers, and returns the length of highest mountain.
+#A Mountain is defined as adjacent integers that are strictly increasing until they reach a peak, at which they become strictly decresing.
+#At least 3 no.'s are required to form a mountain.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//1-> Identify all the peaks
+//2-> Move in both direction's(i.e. left & right) to count elements present.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int highest_mountain(vector<int> arr){
+   int n = arr.size();
+   int largest =0;
+
+   for (int i=1; i < n-2;){
+       //check if a[i] is a peak or not
+       if (arr[i]>arr[i-1] and arr[i]>arr[i+1]){
+           int count = 1;
+           int j = i;
+           //count backwards (left)
+           while(j>=1 and arr[j]>arr[j-1]){
+               j--;
+               count++;
+           }
+           //count forward (right)
+           while (i<n-2 and arr[i]>arr[i+1]){
+               i++;
+               count++;
+           }
+           largest = max(largest,count);
+       }
+       else{
+           i++;
+       }
+   }
+   return largest;
+}
+
+int main(){
+    vector<int> arr{5,6,1,2,3,4,5,4,3,2,0,1,2,3,-2,4};
+     cout<< highest_mountain(arr);
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OUTPUT:
+9
