@@ -1,0 +1,65 @@
+# Given an array containing N integers, and a number S denoting a target Sum.
+# Find all distinct integers that can add up to form target sum.The number in each triplet should be in ascending order,
+# and triplet should be ordered too. Return empty array if no such triplet exists.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector <vector<int>> triplet(vector<int> arr, int sum){
+     int n = arr.size();
+     sort(arr.begin(),arr.end());
+     vector<vector<int>>result;
+
+   //Pick every arr[i], and apply pair sum for remaining part
+    for (int i=0; i<= n-3;i++){
+        int j = i+1;
+        int k = n-1;
+
+        while (j<k){
+        int current_sum = arr[i];
+        current_sum += arr[j];
+        current_sum += arr[k];
+
+        if (current_sum== sum){
+            result.push_back({arr[i],arr[j],arr[k]});
+            j++;
+            k--;
+        }
+        else if (current_sum > sum){
+            k--;
+        }
+        else{
+            j++;
+        }
+        }
+    }
+  return result;
+};
+
+
+int main(){
+   vector <int> arr{1,2,3,4,7,8,9,15,5};
+   int sum = 18;
+   auto result = triplet(arr,sum);
+
+   for(auto v: result){
+       for (auto no : v){
+           cout<< no<<",";
+       }
+       cout<<endl;
+   }
+ return 0;
+ }
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OUTPUT:
+1,2,15,
+1,8,9, 
+2,7,9, 
+3,7,8, 
+4,5,9, 
+
+These triplets are sorted from top_to_bottom and lefgt_to_Right. 
