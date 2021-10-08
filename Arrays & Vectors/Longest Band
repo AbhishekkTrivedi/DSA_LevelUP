@@ -1,0 +1,55 @@
+Problem Statement:
+//Given an array containing N integers, find the length of longest band. A BAND is defined as a subseuence which can be reordered in such a manner 
+  all elements appear consecutive(i.e. with absolute difference of 1 between neighbouring elemnts).
+  A longest Band is the band (subsequence) which contains maximum integers.
+------------------------------------------------------------------------------------------------------------------------------------------------------  
+Crux:
+1)Find the starting number of subsequence(parent) by checking previous digit in unordered set.
+2)When 'subsequence_starting_number'(Parent) is found search for next consecutive no. in unordered_set and increase the count if found. 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+using namespace std;
+
+int longestBand(vector<int>arr){
+	int n = arr.size();
+	unordered_set<int>s;
+	
+	//insert data inside a set
+	for(int x:arr){
+		s.insert(x);
+	}
+	
+	int largestLen = 1;
+	
+	//iterate over the array
+	for (auto element: s){
+		int parent = element - 1;
+		
+		if(s.find(parent)==s.end()){  //previous elemnet does not exist & parent is start of chain
+			int next_no = element + 1;
+			int cnt =1;
+			
+			while(s.find(next_no) != s.end()){ //check next element exist and increment the count
+				next_no++;
+				cnt++;
+			}
+			if (cnt > largestLen){
+				largestLen = cnt;
+			}
+		}
+	}
+	return largestLen;
+};
+
+int main(){
+	vector<int> arr{1,9,3,0,18,5,2,4,10,7,12,6};
+	cout<< longestBand(arr);
+	
+	return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Output:-
+8
